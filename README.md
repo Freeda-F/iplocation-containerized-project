@@ -94,7 +94,7 @@ docker-compose config
 ```
 docker-compose up -d
 ```
-![image](https://user-images.githubusercontent.com/93197553/147594293-38f20841-2edf-4f78-9087-a4810084cf6b.png)
+![image](https://user-images.githubusercontent.com/93197553/147594775-fa77ca87-5977-45c7-a381-b7d03dd45651.png)
 
 ## Result
 
