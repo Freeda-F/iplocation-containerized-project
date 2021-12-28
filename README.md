@@ -79,54 +79,26 @@ docker image pull freedafrancis/iplocation-api:latest
 
 ## Run the containers 
 
-In this demo, the containers are run manually using docker commands. You may also use [docker-compose](https://docs.docker.com/compose/install/) commands to automatically deploy and run the containers. You may refer [this demo]() for the same. 
+You can either deploy the containers manually using docker commands or using [docker-compose](https://docs.docker.com/compose/install/). I will be deploying this application using docker-compose.
 
-1. REDIS Container
-```
-docker container run \
--d \
---name redis \
---network iplocation-net \
---restart always \
-redis:latest
-```
+#### Docker-compose
+Create a docker-compose file(docker-compose.yml) and use compose commands to deploy the container.
 
-2. IP Location - API Service container
+1. Check if the docker-compose.yml file has a valid format
 ```
-docker container run \
--d \
--p 8080:8080 \
---name iplocation-api \
---restart always \
---network iplocation-net \
--e REDIS_HOST="redis" \
--e APP_PORT="8080" \
--e API_KEY_FROM_SECRETSMANAGER=True \
--e SECRET_NAME="ipstack" \
--e SECRET_KEY="ipstack-api-key" \
--e REGION_NAME="ap-south-1" \
-freedafrancis/iplocation-api:v1
+docker-compose config
 ```
-3. IP Location - GUI Container
-```
-docker container run \
--d \
--p 80:8080 \
---restart always \
---network iplocation-net \
---name ipgeolocation-gui \
--e API_SERVER="iplocation-api" \
--e API_SERVER_PORT="8080" \
--e API_PATH="/api/v1/" \
--e APP_PORT="8080" \
-freedafrancis/iplocation-gui:v1
-```
+![image](https://user-images.githubusercontent.com/93197553/147594193-db14679e-425e-4cb3-9844-cd1b4a597ffc.png)
 
-![image](https://user-images.githubusercontent.com/93197553/147588332-8d7611b5-5d28-4d2f-9a30-2fd4c6540189.png)
+2. Use docker compose command to deploy all the containers
+```
+docker-compose up -d
+```
+![image](https://user-images.githubusercontent.com/93197553/147594293-38f20841-2edf-4f78-9087-a4810084cf6b.png)
 
 ## Result
 
-You can access the Main application in the format - http://domain.com/ip/123.5.6.6
+You can access the Main application GUI in the format - http://domain.com/ip/123.5.6.6
 ![image](https://user-images.githubusercontent.com/93197553/147588525-34b7fa80-0968-4984-bc1f-8f8598a7642b.png)
 
 You may also access the RAW JSON contents using the format - http://domain.com:8080/api/v1/123.5.6.6
