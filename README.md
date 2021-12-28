@@ -24,6 +24,11 @@ This application will provision 3 layers :
 - The above API_KEY has to be stored in [AWS secret Manager](https://aws.amazon.com/secrets-manager/) for accessing it securely.
 - The Instances to deplay docker container should have an IAM ROle - ['SecretsManagerReadWrite'](https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_available-policies.html) attached to itself.
 
+## Architecture
+
+![image](https://user-images.githubusercontent.com/93197553/147599450-91a0db16-9756-4195-b866-e79f7798f9ac.png)
+
+
 ## Building Docker images
 For deploying the 3 layer flask application, we need to build custom images for Frontend and API service using a Dockerfile.
 
